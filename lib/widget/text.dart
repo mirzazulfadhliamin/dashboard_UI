@@ -1,27 +1,31 @@
 import 'package:flutter/material.dart';
 
-class textKu extends StatelessWidget {
-  String text;
-  double size;
-  FontWeight fontWeight;
-  Color color;
-  int maxLine;
-
-  textKu(
-      {super.key,
-      required this.text,
-      this.size = 16.0,
-      this.fontWeight = FontWeight.normal,
-      this.color = Colors.black,
-      this.maxLine = 3});
-
+class text extends StatelessWidget {
+  var text_ = "";
+  double letterspacel;
+  double size = 5.0;
+  var fontw = FontWeight.normal;
+  var color;
+  final int maxLines;
+  text(
+    this.text_,
+    this.size,
+    this.color,
+    this.fontw, {
+    this.letterspacel = 1,
+    this.maxLines = 2,
+  });
   @override
   Widget build(BuildContext context) {
     return Text(
-      text,
-      maxLines: maxLine,
-      style: TextStyle(fontSize: size, fontWeight: fontWeight, color: color),
-      // overflow: TextOverflow.ellipsis,
+      text_,
+      style: TextStyle(
+          color: color,
+          fontSize: size,
+          fontWeight: fontw,
+          letterSpacing: letterspacel),
+      maxLines: maxLines,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }

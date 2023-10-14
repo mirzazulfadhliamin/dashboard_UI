@@ -1,4 +1,5 @@
-import 'package:dashboard/controllers/home_ctrl.dart';
+
+import 'package:dashboard/modules/controllers/home_ctrl.dart';
 import 'package:get/get.dart';
 
 class HomeBinding extends Bindings {
