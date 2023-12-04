@@ -4,6 +4,6 @@ import 'package:get/get.dart';
 
 class HomeBinding extends Bindings {
   void dependencies() {
-    Get.put(HomeController());
+    Get.lazyPut(() => HomeController());
   }
 }

@@ -1,12 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:dashboard/data/popular.dart';
+
 import 'package:dashboard/data/trend.dart';
 import 'package:dashboard/data/categoris.dart';
 import 'package:dashboard/modules/bindings/home_binding.dart';
+import 'package:dashboard/modules/controllers/home_ctrl.dart';
 
 import 'package:dashboard/utils/colors/colors.dart';
 import 'package:dashboard/utils/colors/title_text.dart';
-import 'package:dashboard/utils/size.dart';
+
 import 'package:dashboard/widget/card.dart';
 import 'package:dashboard/widget/container.dart';
 import 'package:dashboard/widget/info_card.dart';
@@ -15,10 +16,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomePage extends GetView<HomeBinding> {
-  const HomePage({super.key});
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final HomeController controllers = Get.find<HomeController>();
     var size = MediaQuery.of(context).size;
     final double itemHeight = (size.height - kToolbarHeight - 24) / 2;
     final double itemWidth = size.width / 2;
@@ -186,6 +188,7 @@ class HomePage extends GetView<HomeBinding> {
             Container(
                 margin: EdgeInsets.only(left: 10),
                 child: text(populardeals, 16, db2_black, FontWeight.bold)),
+            
             GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -193,12 +196,21 @@ class HomePage extends GetView<HomeBinding> {
               ),
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
-              itemCount: shopItems.length,
-              itemBuilder: (BuildContext ctxt, int index) => ShoppingItem(
-                title: shopItems[index].title,
-                description: shopItems[index].description,
-                image: shopItems[index].image,
-                price: shopItems[index].price,
+              itemCount: controllers.shopItems.length,
+              itemBuilder: (BuildContext ctxt, int index) => Obx(
+                () =>
+                ShoppingItem(
+                  title: controllers.shopItems[index].title,
+                  description: controllers.shopItems[index].description,
+                  image: controllers.shopItems[index].image,
+                  price: controllers.shopItems[index].price,
+                  isLiked: controllers.shopItems[index].isLiked.value,
+                  ttext: controllers.lala.toString(),
+                  fuction: () {
+                    controllers.updateItemIsLiked(index);
+                 
+                  },
+                ),
               ),
             ),
             SizedBox(

@@ -1,21 +1,22 @@
+import 'dart:ffi';
 import 'package:get/get.dart';
-
-class ShopItem extends GetxController{
+class likeModel {
   final int id;
   final String title;
   final String description;
-  final String image;
   final double price;
-  RxBool isLiked;
+  final String images;
+  int quantity;
+  final RxBool isLiked;
 
-  ShopItem({
+  likeModel({
     required this.id,
     required this.title,
     required this.description,
-    required this.image,
     required this.price,
-     bool? isLiked,
-  }): isLiked = isLiked?.obs ?? false.obs;
+    required this.images,
+    required this.quantity,
+    bool isLiked = false,
+  }): isLiked = isLiked.obs;
 }
-
 

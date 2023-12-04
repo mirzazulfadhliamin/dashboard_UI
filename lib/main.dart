@@ -1,4 +1,5 @@
 import 'package:dashboard/home.dart';
+import 'package:dashboard/modules/bindings/home_binding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: HomePage(),
+      initialBinding: HomeBinding(),
     );
   }
 }
